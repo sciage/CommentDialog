@@ -4,10 +4,9 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import static com.test.commentdialog.bean.CommentEntity.TYPE_COMMENT_MORE;
 
-/**
- * @author ganhuanhui
- * 时间：2019/12/12 0012
- * 描述：更多item
+/*** @author ganhuanhui
+ * Time:2019/12/12 0012
+ * Description: more item
  */
 public class CommentMoreBean implements MultiItemEntity {
 

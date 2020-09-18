@@ -2,13 +2,13 @@ package com.test.commentdialog.single;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,22 +17,18 @@ import android.widget.RelativeLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.loadmore.SimpleLoadMoreView;
 import com.test.commentdialog.R;
-import com.test.commentdialog.bean.CommentEntity;
-import com.test.commentdialog.bean.CommentMoreBean;
 import com.test.commentdialog.bean.FirstLevelBean;
 import com.test.commentdialog.bean.SecondLevelBean;
 import com.test.commentdialog.dialog.InputTextMsgDialog;
-import com.test.commentdialog.multi.CommentMultiActivity;
 import com.test.commentdialog.util.RecyclerViewUtil;
 import com.test.commentdialog.widget.VerticalCommentLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * @author ganhuanhui
- * 时间：2019/11/27 0027
- * 描述：仿抖音评论dialog 使用design的BottomSheetDialog
+ * Time:2019/11/27 0027
+ * Description:shake sound review dialog using design BottomSheetDialog
  */
 public class CommentSingleActivity extends AppCompatActivity implements VerticalCommentLayout.CommentItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
@@ -40,10 +36,10 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
     private BottomSheetDialog bottomSheetDialog;
     private InputTextMsgDialog inputTextMsgDialog;
     private float slideOffset = 0;
-    private String content = "我听见你的声音，有种特别的感觉。让我不断想，不敢再忘记你。如果真的有一天，爱情理想会实现，我会加倍努力好好对你，永远不改变";
+    private String content = " I hear your voice and have a special feeling.Let me keep thinking, dare not forget you again.If one day, the ideal of love will come true, I will redouble my efforts to be good to you,never change";
     private CommentDialogSingleAdapter bottomSheetAdapter;
     private RecyclerView rv_dialog_lists;
-    private long totalCount = 30;//总条数不得超过它
+    private long totalCount = 30; // the total number must not exceed it
     private int offsetY;
     private RecyclerViewUtil mRecyclerViewUtil;
 
@@ -57,11 +53,11 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
 
     }
 
-    //初始化数据 在项目中是从服务器获取数据
+    // Initialization data in the project is to get data from the server
     private void initData() {
         for (int i = 0; i < 10; i++) {
             FirstLevelBean firstLevelBean = new FirstLevelBean();
-            firstLevelBean.setContent("第" + (i + 1) + "人评论内容" + (i % 3 == 0 ? content + (i + 1) + "次" : ""));
+            firstLevelBean.setContent ("section" + (i + 1) + "people comment" + (i % 3 == 0 ? content + (i + 1) + " times" : ""));
             firstLevelBean.setCreateTime(System.currentTimeMillis());
             firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3370302115,85956606&fm=26&gp=0.jpg");
             firstLevelBean.setId(i + "");
@@ -69,21 +65,21 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
             firstLevelBean.setIsLike(0);
             firstLevelBean.setPosition(i);
             firstLevelBean.setLikeCount(i);
-            firstLevelBean.setUserName("星梦缘" + (i + 1));
+            firstLevelBean.setUserName ("star dream" + (i + 1));
 
             List<SecondLevelBean> beanList = new ArrayList<>();
             for (int j = 0; j < 3; j++) {
                 SecondLevelBean secondLevelBean = new SecondLevelBean();
-                secondLevelBean.setContent("一级第" + (i + 1) + "人 二级第" + (j + 1) + "人评论内容" + (j % 3 == 0 ? content + (j + 1) + "次" : ""));
+                secondLevelBean.setContent("Level 1" + (i + 1) + "people Level 2" + (j + 1) + "people comment" + (j % 3 == 0 ? content + (j + 1) + " times" : ""));
                 secondLevelBean.setCreateTime(System.currentTimeMillis());
                 secondLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
                 secondLevelBean.setId(j + "");
                 firstLevelBean.setUserId("ChildUserId" + i);
                 secondLevelBean.setIsLike(0);
                 secondLevelBean.setLikeCount(j);
-                secondLevelBean.setUserName("星梦缘" + (i + 1) + "  " + (j + 1));
+                secondLevelBean.setUserName("star dream" + (i + 1) + "" + (j + 1));
                 secondLevelBean.setIsReply(j % 5 == 0 ? 1 : 0);
-                secondLevelBean.setReplyUserName(j % 5 == 0 ? "闭嘴家族" + j : "");
+                secondLevelBean.setReplyUserName(j % 5 == 0 ? "Shut up family" + j : "");
                 secondLevelBean.setPosition(i);
                 secondLevelBean.setChildPosition(j);
                 beanList.add(secondLevelBean);
@@ -94,8 +90,8 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
     }
 
     /**
-     * 重新排列数据
-     * 未解决滑动卡顿问题
+     * Rearrange data
+     * Unresolved sliding Caton issue
      */
     private void sort() {
         int size = data.size();
@@ -176,22 +172,22 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
     }
 
     private void initListener() {
-        // 点击事件
+        // Click event
         bottomSheetAdapter.setOnItemChildClickListener((adapter, view1, position) -> {
             FirstLevelBean firstLevelBean = bottomSheetAdapter.getData().get(position);
             if (firstLevelBean == null) return;
             if (view1.getId() == R.id.ll_like) {
-                //一级评论点赞 项目中还得通知服务器 成功才可以修改
+                // A comment like the project must notify the server is successful before you can modify
                 firstLevelBean.setLikeCount(firstLevelBean.getLikeCount() + (firstLevelBean.getIsLike() == 0 ? 1 : -1));
                 firstLevelBean.setIsLike(firstLevelBean.getIsLike() == 0 ? 1 : 0);
                 data.set(position, firstLevelBean);
                 bottomSheetAdapter.notifyItemChanged(firstLevelBean.getPosition());
             } else if (view1.getId() == R.id.rl_group) {
-                //添加二级评论
+                // Add secondary comment
                 CommentSingleActivity.this.initInputTextMsgDialog((View) view1.getParent(), false, firstLevelBean.getHeadImg(), position);
             }
         });
-        //滚动事件
+        // Scroll events
         if (mRecyclerViewUtil != null) mRecyclerViewUtil.initScrollListener(rv_dialog_lists);
     }
 
@@ -220,7 +216,7 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
 
     private void addComment(boolean isReply, String headImg, final int position, String msg) {
         if (position >= 0) {
-            //添加二级评论
+            // Add secondary comment
             SecondLevelBean secondLevelBean = new SecondLevelBean();
             FirstLevelBean firstLevelBean = bottomSheetAdapter.getData().get(position);
             secondLevelBean.setReplyUserName("replyUserName");
@@ -245,9 +241,9 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
             }, 100);
 
         } else {
-            //添加一级评论
+            // Add a Level 1 comment
             FirstLevelBean firstLevelBean = new FirstLevelBean();
-            firstLevelBean.setUserName("赵丽颖");
+            firstLevelBean.setUserName ("Zhao Liying");
             firstLevelBean.setId(bottomSheetAdapter.getItemCount() + 1 + "");
             firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
             firstLevelBean.setCreateTime(System.currentTimeMillis());
@@ -278,7 +274,7 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
         return displayMetrics.heightPixels;
     }
 
-    //在项目中是从服务器获取数据，其实就是二级评论分页获取
+    //In the project is to get data from the server, in fact, is the second level comment paging get
     @Override
     public void onMoreClick(View layout, int position) {
         FirstLevelBean firstLevelBean = data.get(position);
@@ -286,28 +282,28 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
         int size = beans.size();
         for (int i = size; i < size + 2; i++) {
             SecondLevelBean secondLevelBean = new SecondLevelBean();
-            secondLevelBean.setContent("一级第" + (position + 1) + "人 二级第" + (i + 1) + "人评论内容" + (i % 3 == 0 ? content + (i + 1) + "次" : ""));
+            secondLevelBean.setContent ("Level 1" + (position + 1) + "people Level 2" + (i + 1) + "people comment" + (i % 3 == 0 ? content + (i + 1) + " times" : ""));
             secondLevelBean.setCreateTime(System.currentTimeMillis());
             secondLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
             secondLevelBean.setId(i + "");
             secondLevelBean.setIsLike(i % 2 == 0 ? 1 : 0);
             secondLevelBean.setLikeCount(i);
-            secondLevelBean.setUserName("星梦缘" + (i + 1) + "  " + (i + 1));
+            secondLevelBean.setUserName ("star dream" + (i + 1) + "" + (i + 1));
             secondLevelBean.setIsReply(i % 5 == 0 ? 1 : 0);
-            secondLevelBean.setReplyUserName(i % 5 == 0 ? "闭嘴家族" + (i + 1) : "");
+            secondLevelBean.setReplyUserName(i % 5 == 0 ? "Shut up family" + (i + 1) : "");
             beans.add(secondLevelBean);
         }
         sort();
     }
 
-    //添加二级评论（回复某人）
+    // Add a secondary comment(reply to someone）
     @Override
     public void onItemClick(View layout, SecondLevelBean bean, int position) {
         initInputTextMsgDialog(layout, true, bean.getHeadImg(), position);
     }
 
-    //二级评论点赞 本地数据更新喜欢状态
-    // 在项目中是还需要通知服务器成功才可以修改本地数据
+    // Secondary comments like local data update like status
+    // In the project is also required to notify the server successfully before you can modify the local data
     @Override
     public void onLikeClick(View layout, SecondLevelBean bean, int position) {
         bean.setLikeCount(bean.getLikeCount() + (bean.getIsLike() == 1 ? -1 : 1));
@@ -316,17 +312,17 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
         bottomSheetAdapter.notifyItemChanged(bean.getPosition());
     }
 
-    //在项目中是从服务器获取数据，其实就是一级评论分页获取
+    //In the project is to get data from the server, in fact, is a comment paging get
     @Override
     public void onLoadMoreRequested() {
         if (data.size() >= totalCount) {
             bottomSheetAdapter.loadMoreEnd(false);
             return;
         }
-        //加载更多
+        // Load more
         for (int i = 0; i < 10; i++) {
             FirstLevelBean firstLevelBean = new FirstLevelBean();
-            firstLevelBean.setUserName("赵丽颖 add more" + i);
+            firstLevelBean.setUserName ("Zhao Liying add more" + i);
             firstLevelBean.setId(bottomSheetAdapter.getItemCount() + (i + 1) + "");
             firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
             firstLevelBean.setCreateTime(System.currentTimeMillis());
@@ -339,7 +335,7 @@ public class CommentSingleActivity extends AppCompatActivity implements Vertical
         bottomSheetAdapter.loadMoreComplete();
     }
 
-    // item滑动到原位
+    // item slide into place
     public void scrollLocation(int offsetY) {
         try {
             rv_dialog_lists.smoothScrollBy(0, offsetY);

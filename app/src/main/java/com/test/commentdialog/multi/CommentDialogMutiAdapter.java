@@ -1,6 +1,6 @@
 package com.test.commentdialog.multi;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -144,7 +144,7 @@ public class CommentDialogMutiAdapter extends BaseMultiItemQuickAdapter<MultiIte
     }
 
     public SpannableString makeReplyCommentSpan(final String atSomeone, final String id, String commentContent) {
-        String richText = String.format("回复 %s : %s", atSomeone, commentContent);
+        String richText = String.format("Reply %s: %s", atSomeone, commentContent);
         SpannableString builder = new SpannableString(richText);
         if (!TextUtils.isEmpty(atSomeone)) {
             int childStart = 2;
@@ -153,7 +153,7 @@ public class CommentDialogMutiAdapter extends BaseMultiItemQuickAdapter<MultiIte
 
                 @Override
                 public void onClick(@NonNull View widget) {
-                    Toast.makeText(mContext, atSomeone + " id: " + id, Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, atSomeone + "id:" + id, Toast.LENGTH_LONG).show();
                 }
             }, childStart, childEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }

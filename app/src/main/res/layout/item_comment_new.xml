@@ -17,7 +17,7 @@
         android:paddingRight="15dp"
         android:paddingBottom="8dp">
 
-        <!--头像-->
+        <!-- Avatar-->
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_header"
             android:layout_width="32dp"
@@ -29,7 +29,7 @@
             app:riv_border_color="@color/gray_d8"
             />
 
-        <!--点赞-->
+        <!--Like-->
         <LinearLayout
             android:id="@+id/ll_like"
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
 
         </LinearLayout>
 
-        <!--用户名-->
+        <!-- User name-->
         <TextView
             android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/text_size_14" />
 
-        <!--评论内容-->
+        <!-- Comment content-->
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="刚刚"
+            android:text="Just now."
             android:textColor="@color/gray_9b"
             android:textSize="@dimen/text_size_12"
             android:maxLines="1"
@@ -106,7 +106,7 @@
 
     </RelativeLayout>
 
-    <!--二级评论-->
+    <!-- Level 2 comments-->
     <com.test.commentdialog.widget.VerticalCommentLayout
         android:id="@+id/verticalCommentLayout"
         android:layout_width="match_parent"

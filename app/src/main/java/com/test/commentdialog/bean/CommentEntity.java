@@ -2,10 +2,9 @@ package com.test.commentdialog.bean;
 
 import java.util.List;
 
-/**
- * @author ganhuanhui
- * 时间：2019/12/11
- * 描述：
+/*** @author ganhuanhui
+ * Time:2019/12/11
+ * Description：
  */
 public class CommentEntity {
 

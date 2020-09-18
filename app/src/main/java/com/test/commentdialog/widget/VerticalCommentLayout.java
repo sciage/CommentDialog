@@ -1,8 +1,8 @@
 package com.test.commentdialog.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -23,9 +23,8 @@ import com.test.commentdialog.bean.SecondLevelBean;
 import com.test.commentdialog.util.SizeUtils;
 
 import java.util.List;
-
 /**
- * 自动添加多个view的LinearLayout
+ * Automatically add LinearLayout for multiple views
  */
 public class VerticalCommentLayout extends LinearLayout implements
         ViewGroup.OnHierarchyChangeListener {
@@ -130,7 +129,7 @@ public class VerticalCommentLayout extends LinearLayout implements
 
 
     /**
-     * 更新指定的position的comment
+     * Update the comment for the specified position
      */
     public void updateTargetComment(int position, List<SecondLevelBean> commentBeans) {
         int oldCount = getChildCount();
@@ -148,7 +147,7 @@ public class VerticalCommentLayout extends LinearLayout implements
 
 
     /**
-     * 創建Comment item view
+     * Create a Comment item view
      */
     private View makeCommentItemView(SecondLevelBean bean, int index) {
         return makeContentView(bean, index);
@@ -156,7 +155,7 @@ public class VerticalCommentLayout extends LinearLayout implements
 
 
     /**
-     * 添加需要的Comment View
+     * Add the desired Comment View
      */
     private void addCommentItemView(View view, SecondLevelBean bean, int index) {
         View commentView = makeCommentItemView(bean, index);
@@ -164,7 +163,7 @@ public class VerticalCommentLayout extends LinearLayout implements
     }
 
     /**
-     * 更新comment list content
+     * Updated comment list content
      */
     private void updateCommentData(View view, SecondLevelBean bean, int index) {
         bindViewData(view, bean);
@@ -244,7 +243,7 @@ public class VerticalCommentLayout extends LinearLayout implements
         }
         view.findViewById(R.id.iv_more).setVisibility(isMore ? View.VISIBLE : View.GONE);
         TextView tvMore = view.findViewById(R.id.tv_more);
-        tvMore.setText(isMore ? "展开更多回复" : "没有更多回复了");
+        tvMore.setText(isMore ? "Expand more replies": "No more replies");
         return view;
     }
 
@@ -270,7 +269,7 @@ public class VerticalCommentLayout extends LinearLayout implements
 
 
     public SpannableString makeReplyCommentSpan(final String atSomeone, final String id, String commentContent) {
-        String richText = String.format("回复 %s : %s", atSomeone, commentContent);
+        String richText = String.format ("reply %S : %s", atSomeone, commentContent);
         SpannableString builder = new SpannableString(richText);
         if (!TextUtils.isEmpty(atSomeone)) {
             int childStart = 2;

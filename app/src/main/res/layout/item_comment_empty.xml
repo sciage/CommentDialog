@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="第一条评论就在等你~~"
+        android:text="The first comment is waiting for you~~"
         android:textStyle="italic"
         android:layout_centerInParent="true"
         android:textSize="@dimen/text_size_20"

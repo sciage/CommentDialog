@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_6f"
         android:textSize="@dimen/text_size_13"
-        android:text="展开更多回复"
+        android:text="Expand more replies"
         android:layout_marginLeft="8dp"
         />
 

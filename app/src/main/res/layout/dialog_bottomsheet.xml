@@ -11,7 +11,7 @@
     android:layout_alignParentBottom="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialog_bottomsheet_rv_lists"
         android:layout_width="match_parent"
         android:layout_height="400dp"
@@ -40,7 +40,7 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
-            android:text="评论"
+            android:text="Comments"
             android:textColor="@color/black_21"
             android:textSize="@dimen/text_size_13"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="1dp"
-            android:text="留下你的精彩评论吧~~"
+            android:text="Leave your wonderful review ~ ~"
             android:textColor="@color/color_6f"
             android:textSize="@dimen/text_size_15" />
 

@@ -34,13 +34,13 @@ public class TextMovementMethods extends LinkMovementMethod {
                 setSpanClick(false);
             }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            //不需要处理
-//            TextClickSpans touchTextClickSpan = getTextSpan(widget, buffer, event);
-//            if (mTextClickSpan != null && touchTextClickSpan != mTextClickSpan) {
-//                mTextClickSpan.setPressed(false);
-//                mTextClickSpan = null;
-//                Selection.removeSelection(buffer);
-//            }
+            //No need to deal with
+// TextClickSpans touchTextClickSpan = getTextSpan(widget, buffer, event);
+// if (mTextClickSpan != null && touchTextClickSpan != mTextClickSpan) {
+// mTextClickSpan.setPressed(false);
+// mTextClickSpan = null;
+// Selection.removeSelection(buffer);
+//}
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             if (mTextClickSpan != null) {
                 mTextClickSpan.onClick(widget);
@@ -61,7 +61,7 @@ public class TextMovementMethods extends LinkMovementMethod {
     }
 
     /**
-     * 得到匹配的span
+     * Get the matching span
      *
      * @param widget
      * @param spannable

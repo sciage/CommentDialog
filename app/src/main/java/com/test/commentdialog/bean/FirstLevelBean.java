@@ -15,27 +15,27 @@ public class FirstLevelBean implements MultiItemEntity {
     
     private List<SecondLevelBean> secondLevelBeans;
 
-    //一级评论id
+    // Level 1 comment id
     private String id;
-    //一级评论头像
+    //Level 1 comment avatar
     private String headImg;
-    //一级评论的用户名
+    // Username for first-level comments
     private String userName;
-    //一级评论的用户id
+    // User id for Level 1 Comments
     private String userId;
-    //评论内容
+    // Comment content
     private String content;
-    //创建时间
+    // Creation time
     private long createTime;
-    //点赞数量
+    // Number of likes
     private long likeCount;
-    //是否点赞了  0没有 1点赞
+    //Whether to like 0 No 1 like
     private int isLike;
-    //当前评论的总条数（包括这条一级评论）ps:处于未使用状态
+    // Total number of current comments (including this first-level comment) ps: unused
     private long totalCount;
-    //当前一级评论的位置（下标）
+    // Position of the current level comment(subscript）
     private int position;
-    //当前一级评论所在的位置(下标)
+    //Location of the current level comment (subscript)
     private int positionCount;
 
     public String getUserId() {

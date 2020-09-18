@@ -2,18 +2,15 @@ package com.test.commentdialog.multi;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
+
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -30,11 +27,10 @@ import com.test.commentdialog.util.RecyclerViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * @author ganhuanhui
- * 时间：2019/11/27 0027
- * 描述：仿抖音评论dialog 使用design的BottomSheetDialog
+ * Time:2019/11/27 0027
+ * Description:shake sound review dialog using design BottomSheetDialog
  */
 public class CommentMultiActivity extends AppCompatActivity implements BaseQuickAdapter.RequestLoadMoreListener {
 
@@ -43,7 +39,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
     private BottomSheetDialog bottomSheetDialog;
     private InputTextMsgDialog inputTextMsgDialog;
     private float slideOffset = 0;
-    private String content = "我听见你的声音，有种特别的感觉。让我不断想，不敢再忘记你。如果真的有一天，爱情理想会实现，我会加倍努力好好对你，永远不改变";
+    private String content = " I hear your voice and have a special feeling.Let me keep thinking, dare not forget you again.If one day, the ideal of love will come true, I will redouble my efforts to be good to you,never change";
     private CommentDialogMutiAdapter bottomSheetAdapter;
     private RecyclerView rv_dialog_lists;
     private long totalCount = 22;
@@ -69,32 +65,32 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
         bottomSheetAdapter.setNewData(data);
     }
 
-    //原始数据 一般是从服务器接口请求过来的
+    // Raw data is usually requested from the server interface
     private void initData() {
         int size = 10;
         for (int i = 0; i < size; i++) {
             FirstLevelBean firstLevelBean = new FirstLevelBean();
-            firstLevelBean.setContent("第" + (i + 1) + "人评论内容" + (i % 3 == 0 ? content + (i + 1) + "次" : ""));
+            firstLevelBean.setContent ("section" + (i + 1) + "people comment" + (i % 3 == 0 ? content + (i + 1) + " times" : ""));
             firstLevelBean.setCreateTime(System.currentTimeMillis());
             firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3370302115,85956606&fm=26&gp=0.jpg");
             firstLevelBean.setId(i + "");
             firstLevelBean.setIsLike(0);
             firstLevelBean.setLikeCount(i);
-            firstLevelBean.setUserName("星梦缘" + (i + 1));
+            firstLevelBean.setUserName ("star dream" + (i + 1));
             firstLevelBean.setTotalCount(i + size);
 
             List<SecondLevelBean> beans = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
                 SecondLevelBean secondLevelBean = new SecondLevelBean();
-                secondLevelBean.setContent("一级第" + (i + 1) + "人 二级第" + (j + 1) + "人评论内容" + (j % 3 == 0 ? content + (j + 1) + "次" : ""));
+                secondLevelBean.setContent("Level 1" + (i + 1) + "people Level 2" + (j + 1) + "people comment" + (j % 3 == 0 ? content + (j + 1) + " times" : ""));
                 secondLevelBean.setCreateTime(System.currentTimeMillis());
                 secondLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
                 secondLevelBean.setId(j + "");
                 secondLevelBean.setIsLike(0);
                 secondLevelBean.setLikeCount(j);
-                secondLevelBean.setUserName("星梦缘" + (i + 1) + "  " + (j + 1));
+                secondLevelBean.setUserName("star dream" + (i + 1) + "" + (j + 1));
                 secondLevelBean.setIsReply(j % 5 == 0 ? 1 : 0);
-                secondLevelBean.setReplyUserName(j % 5 == 0 ? "闭嘴家族" + j : "");
+                secondLevelBean.setReplyUserName(j % 5 == 0 ? "Shut up family" + j : "");
                 secondLevelBean.setTotalCount(firstLevelBean.getTotalCount());
                 beans.add(secondLevelBean);
                 firstLevelBean.setSecondLevelBeans(beans);
@@ -104,9 +100,9 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
     }
 
     /**
-     * 对数据重新进行排列
-     * 目的是为了让一级评论和二级评论同为item
-     * 解决滑动卡顿问题
+     * Rearrange data
+     * The purpose is to make the first and second level comments the same item
+     * Solve sliding Caton problem
      *
      * @param position
      */
@@ -127,7 +123,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
         for (int i = 0; i < count; i++) {
             if (i < position) continue;
 
-            //一级评论
+            // Level 1 Comments
             FirstLevelBean firstLevelBean = datas.get(i);
             if (firstLevelBean == null) continue;
             firstLevelBean.setPosition(i);
@@ -143,7 +139,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
             firstLevelBean.setPositionCount(posCount);
             data.add(firstLevelBean);
 
-            //二级评论
+            // Second level comments
             for (int j = 0; j < beanSize; j++) {
                 SecondLevelBean secondLevelBean = secondLevelBeans.get(j);
                 secondLevelBean.setChildPosition(j);
@@ -152,7 +148,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
                 data.add(secondLevelBean);
             }
 
-            //展示更多的item
+            // Show more items
             if (beanSize <= 18) {
                 CommentMoreBean moreBean = new CommentMoreBean();
                 moreBean.setPosition(i);
@@ -182,7 +178,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
         iv_dialog_close.setOnClickListener(v -> bottomSheetDialog.dismiss());
         rl_comment.setOnClickListener(v -> {
-            //添加二级评论
+            // Add secondary comment
             initInputTextMsgDialog(null, false, null, -1);
         });
 
@@ -201,7 +197,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
         BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) view.getParent());
         mDialogBehavior.setPeekHeight(getWindowHeight());
 
-        //dialog滑动监听
+        // dialog slide monitor
         mDialogBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -209,7 +205,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
                     mDialogBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 } else if (newState == BottomSheetBehavior.STATE_SETTLING) {
                     if (slideOffset <= -0.28) {
-                        //当向下滑动时 值为负数
+                        // Value is negative when sliding down
                         bottomSheetDialog.dismiss();
                     }
                 }
@@ -217,23 +213,23 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                CommentMultiActivity.this.slideOffset = slideOffset;//记录滑动值
+                CommentMultiActivity.this.slideOffset = slideOffset; // record sliding value
             }
         });
     }
 
     private void initListener() {
-        // 点击事件
+        // Click event
         bottomSheetAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view1, int position) {
                 switch ((int) view1.getTag()) {
                     case CommentEntity.TYPE_COMMENT_PARENT:
                         if (view1.getId() == R.id.rl_group) {
-                            //添加二级评论
+                            // Add secondary comment
                             CommentMultiActivity.this.initInputTextMsgDialog((View) view1.getParent(), false, bottomSheetAdapter.getData().get(position), position);
                         } else if (view1.getId() == R.id.ll_like) {
-                            //一级评论点赞 项目中还得通知服务器 成功才可以修改
+                            // A comment like the project must notify the server is successful before you can modify
                             FirstLevelBean bean = (FirstLevelBean) bottomSheetAdapter.getData().get(position);
                             bean.setLikeCount(bean.getLikeCount() + (bean.getIsLike() == 0 ? 1 : -1));
                             bean.setIsLike(bean.getIsLike() == 0 ? 1 : 0);
@@ -245,10 +241,10 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
                     case CommentEntity.TYPE_COMMENT_CHILD:
 
                         if (view1.getId() == R.id.rl_group) {
-                            //添加二级评论（回复）
+                            // Add secondary comment(reply）
                             CommentMultiActivity.this.initInputTextMsgDialog(view1, true, bottomSheetAdapter.getData().get(position), position);
                         } else if (view1.getId() == R.id.ll_like) {
-                            //二级评论点赞 项目中还得通知服务器 成功才可以修改
+                            // Secondary comments like the project must notify the server is successful before you can modify
                             SecondLevelBean bean = (SecondLevelBean) bottomSheetAdapter.getData().get(position);
                             bean.setLikeCount(bean.getLikeCount() + (bean.getIsLike() == 0 ? 1 : -1));
                             bean.setIsLike(bean.getIsLike() == 0 ? 1 : 0);
@@ -261,7 +257,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
                         break;
                     case CommentEntity.TYPE_COMMENT_MORE:
-                        //在项目中是从服务器获取数据，其实就是二级评论分页获取
+                        //In the project is to get data from the server, in fact, is the second level comment paging get
                         CommentMoreBean moreBean = (CommentMoreBean) bottomSheetAdapter.getData().get(position);
                         SecondLevelBean secondLevelBean = new SecondLevelBean();
                         secondLevelBean.setContent("more comment" + 1);
@@ -270,9 +266,9 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
                         secondLevelBean.setId(1 + "");
                         secondLevelBean.setIsLike(0);
                         secondLevelBean.setLikeCount(0);
-                        secondLevelBean.setUserName("星梦缘" + 1);
+                        secondLevelBean.setUserName ("star Dream" + 1);
                         secondLevelBean.setIsReply(0);
-                        secondLevelBean.setReplyUserName("闭嘴家族" + 1);
+                        secondLevelBean.setReplyUserName ("shut up family" + 1);
                         secondLevelBean.setTotalCount(moreBean.getTotalCount() + 1);
 
                         datas.get((int) moreBean.getPosition()).getSecondLevelBeans().add(secondLevelBean);
@@ -288,7 +284,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
             }
         });
-        //滚动事件
+        // Scroll events
         if (mRecyclerViewUtil != null) mRecyclerViewUtil.initScrollListener(rv_dialog_lists);
     }
 
@@ -308,7 +304,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
                 @Override
                 public void dismiss() {
-                    //item滑动到原位
+                    // item slide into place
                     scrollLocation(-offsetY);
                 }
             });
@@ -316,13 +312,13 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
         showInputTextMsgDialog();
     }
 
-    //添加评论
+    // Add a comment
     private void addComment(boolean isReply, MultiItemEntity item, final int position, String msg) {
         final String userName = "hui";
         if (position >= 0) {
-            //添加二级评论
+            // Add secondary comment
             int pos = 0;
-            String replyUserName = "未知";
+            String replyUserName = " unknown";
             if (item instanceof FirstLevelBean) {
                 FirstLevelBean firstLevelBean = (FirstLevelBean) item;
                 positionCount = (int) (firstLevelBean.getPositionCount() + 1);
@@ -359,7 +355,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
             }, 100);
 
         } else {
-            //添加一级评论
+            // Add a Level 1 comment
             FirstLevelBean firstLevelBean = new FirstLevelBean();
             firstLevelBean.setUserName(userName);
             firstLevelBean.setId(bottomSheetAdapter.getItemCount() + 1 + "");
@@ -414,7 +410,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
 
     }
 
-    // item滑动
+    // item slide
     public void scrollLocation(int offsetY) {
         try {
             rv_dialog_lists.smoothScrollBy(0, offsetY);
@@ -424,7 +420,7 @@ public class CommentMultiActivity extends AppCompatActivity implements BaseQuick
     }
 
     /**
-     * 关闭默认局部刷新动画
+     * Turn off the default local refresh animation
      */
     public void closeDefaultAnimator(RecyclerView mRvCustomer) {
         if (null == mRvCustomer) return;

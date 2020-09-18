@@ -2,17 +2,14 @@ package com.test.commentdialog.widget;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
-
 /**
- * 感谢razerdp提供缓存View思路
+ * Thanks to razerdp for providing cache View ideas
  * https://github.com/razerdp/FriendCircle
  */
 public final class SimpleWeakObjectPool<T> {
     private WeakReference<T>[] objsPool;
     private int size;
     private int curPointer = -1;
-
-
     public SimpleWeakObjectPool() {
         this(5);
     }

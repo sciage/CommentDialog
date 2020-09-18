@@ -2,10 +2,9 @@ package com.test.commentdialog;
 
 import android.app.Application;
 
-/**
- * @author ganhuanhui
- * 时间：2019/12/17 0017
- * 描述：
+/*** @author ganhuanhui
+ * Time:2019/12/17 0017
+ * Description：
  */
 public class CommentApplication extends Application {
 
